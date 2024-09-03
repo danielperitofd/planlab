@@ -1,0 +1,153 @@
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/style_index.css') }}">
+
+            <div class="plano-detalhes">
+                <h1>{{ plano.titulo }}</h1>
+                <p><strong>Data da Aula:</strong> {{ plano.data_aula }}</p>
+                <p><strong>Turma:</strong> {{ plano.turma }}</p>
+                <p><strong>Semestre:</strong> {{ plano.semestre }}</p>
+                <p><strong>Conteúdo Programático:</strong><br> {{ plano.conteudo_programatico }}</p>
+                <p><strong>Metodologia:</strong><br> {{ plano.metodologia }}</p>
+                <p><strong>Recursos Necessários:</strong><br> {{ plano.recursos_necessarios }}</p>
+                <p><strong>Avaliação:</strong><br> {{ plano.avaliacao_observacoes }}</p>
+                <p><strong>Observações:</strong><br> {{ plano.observacoes }}</p>
+                <p><strong>Eventos extraordinários:</strong> {{ plano.eventos_extraordinarios }}</p>
+            </div>
+            <div class="botoes-opcoes">
+                <form method="POST" action="{{ url_for('editar_plano', plano_id=plano.id) }}">
+                    <button type="submit" class="botao-acoes botao-editar">Editar</button>
+                </form>
+                <form method="POST" action="{{ url_for('excluir_plano', plano_id=plano.id) }}" onsubmit="return confirm('Tem certeza que deseja excluir este plano de aula?')">
+                    <button type="submit" class="botao-acoes botao-excluir">Excluir</button>
+                </form>
+            </div>
+
+
+css deletado ------------------------------------------------------------------------------------------------------------------
+
+  .plano-detalhes {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.plano-detalhes h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+.plano-detalhes p {
+  margin: 10px 0;
+  color: #666;
+}
+
+.botao-acoes {
+  width: 100px; /* ajuste conforme necessário */
+  height: 40px; /* ajuste conforme necessário */
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 10px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+.botao-editar {
+  background-color: #007bff; /* cor azul */
+  color: #fff; /* cor do texto branco */
+}
+
+.botao-excluir {
+  background-color: #dc3545; /* cor vermelha */
+  color: #fff; /* cor do texto branco */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th, td {
+  border-top: 1px solid #a5b5c7;
+  border-bottom: 1px solid #a5b5c7;
+  text-align: left;
+  padding: 12px;
+}
+th {
+  background-color: #eff1f3;
+  font-weight: bold;
+}
+tr:nth-child(even) {
+  background-color: #f7f7f8;
+}
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 2rem 0rem 0rem 0rem;
+}
+
+.bnt-editar {
+  width: 13rem;
+  cursor: pointer;
+  padding: 1.2rem 3rem;
+  border: 0;
+  border-radius: 1rem;
+  background-color: #0244F5;
+  color: #ffffff;
+  font-weight: Bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  font-size: 2rem;
+}
+
+.bnt-editar:hover {
+  background-color: #6991ff;
+  box-shadow: 0 0 2rem #6fc5ff50;
+}
+
+.bnt-editar:active {
+  background-color: #a7beff;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}
+
+.bnt-excluir {
+  width: 13rem;
+  cursor: pointer;
+  padding: 1.2rem 3rem;
+  border: 0;
+  border-radius: 1rem;
+  background-color: #0244F5;
+  color: #ffffff;
+  font-weight: Bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  font-size: 2rem;
+}
+
+.bnt-excluir:hover {
+  background-color: #6991ff;
+  box-shadow: 0 0 2rem #6fc5ff50;
+}
+
+.bnt-excluir:active {
+  background-color: #a7beff;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}
+ 
+
+            

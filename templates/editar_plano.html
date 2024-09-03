@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Plano de Aula</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_formulario.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_index.css') }}">
+</head>
+<body>
+    <div class="conteiner">
+        <nav id="sidebar">
+            <div id="sidebar_content">
+                <div id="user_infos">
+                    <div class="logo">
+                        <span class="logo-side">{PlanLab}</span> <p class="logo-side">Solutions</p> 
+                    </div>
+                </div>
+        
+                <ul id="side_items">
+                    <li class="side-item active">
+                        <a href="{{ url_for('index') }}">
+                            <img src="../static/img/MaterialSymbolsHomeOutlineRounded.png" alt="">
+                            <span class="item-description">
+                                Home
+                            </span>
+                        </a>
+                    </li>
+        
+                    <li class="side-item">
+                        <a href="{{ url_for('planos_de_aula') }}">
+                            <img src="../static/img/MaterialSymbolsContractEditOutlineRounded.png" alt="">
+                            <span class="item-description">
+                                Planos de Aula
+                            </span>
+                        </a>
+                    </li>
+        
+                    <li class="side-item">
+                        <a href="#">
+                            <img src="../static/img/MaterialSymbolscadenetaToAppRounded.png" alt="">
+                            <span class="item-description">
+                                Cardeneta
+                            </span>
+                        </a>
+                    </li>
+        
+                    <li class="side-item">
+                        <a href="#">
+                            <img src="../static/img/MaterialSymbolsExitToAppRounded.png" alt="">
+                            <span class="item-description">
+                                Sair
+                            </span>
+                        </a>
+                    </li>
+        
+                </ul>
+        
+                <button id="open_btn">
+                    <img src="../static/img/seta.png" id="open_btn_icon" class="fa-solid fa-chevron-right"></img>
+                </button>
+            </div>
+        </nav>
+
+        <header>
+            <div class="logo-header"><img src="../static/img/planlab logo branco p.png" alt="">
+            </div>
+            <div class="usuario">
+                <img src="https://randomuser.me/api/portraits/women/24.jpg" alt="Foto do Usuário">
+                <div>
+                    <strong class="user-nome">Aurora Silva</strong>
+                    <div class="cargo"><span>Professor(a)</span></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-form">
+            <h1>Editar Plano de Aula</h1>
+            <form method="POST" action="{{ url_for('editar_plano', plano_id=plano_id) }}">
+                <h3>Informações Gerais</h3>
+                <div class="dados">
+                    <div class="data">
+                        <label for="data">Data da Aula:</label>
+                        <input type="date" id="data" name="data_aula" value="{{ plano.data_aula }}" required>
+                    </div>
+                    <div class="turma">
+                        <label for="turma">Turma:</label>
+                        <select id="turma" name="turma" required>
+                            <option value="1º Ano" {% if plano.turma == '1º Ano' %} selected {% endif %}>1º Ano</option>
+                            <option value="2º Ano" {% if plano.turma == '2º Ano' %} selected {% endif %}>2º Ano</option>
+                            <option value="3º Ano" {% if plano.turma == '3º Ano' %} selected {% endif %}>3º Ano</option>
+                        </select>
+                    </div>
+                    <div class="semestre">
+                        <label for="semestre">Semestre:</label>
+                        <select id="semestre" name="semestre" required>
+                            <option value="1º Semestre" {% if plano.semestre == '1º Semestre' %} selected {% endif %}>1º Semestre</option>
+                            <option value="2º Semestre" {% if plano.semestre == '2º Semestre' %} selected {% endif %}>2º Semestre</option>
+                            <option value="3º Semestre" {% if plano.semestre == '3º Semestre' %} selected {% endif %}>3º Semestre</option>
+                        </select>
+                    </div>
+                    <div class="titulo">
+                        <label for="titulo">Título da Aula:</label>
+                        <input type="text" id="titulo" name="titulo" value="{{ plano.titulo }}" required>
+                    </div>
+                </div>
+                <hr>
+                <div class="bloco">
+                    <h3>Conteúdo Programático</h3>
+                    <div class="sub-bloco">
+                        <label for="conteudo">Conteúdo Programático:</label>
+                        <textarea id="conteudo" name="conteudo_programatico" rows="4" required>{{ plano.conteudo_programatico }}</textarea>
+                    </div>
+                    <hr>
+                    <h3>Metodologia</h3>
+                    <div class="sub-bloco">
+                        <label for="metodologia">Metodologia:</label>
+                        <textarea id="metodologia" name="metodologia" rows="4" required>{{ plano.metodologia }}</textarea>
+                    </div>
+                    <hr>
+                    <h3>Recursos Necessários</h3>
+                    <div class="sub-bloco">
+                        <label for="recursos">Recursos Necessários:</label>
+                        <textarea id="recursos" name="recursos_necessarios" rows="4" required>{{ plano.recursos_necessarios }}</textarea>
+                    </div>
+                    <hr>
+                    <h3>Avaliação e Observações Adicionais</h3>
+                    <div class="sub-bloco-avaliacao">
+                        <div class="avaliacao-box">
+                            <label for="avaliacao">Avaliação:</label>
+                            <textarea style="resize: none;" id="avaliacao" name="avaliacao_observacoes" rows="4" required>{{ plano.avaliacao_observacoes }}</textarea>
+                        </div>
+                        <div class="observacoes-box">
+                            <label for="observacoes">Observações:</label>
+                            <textarea style="resize: none;" id="observacoes" name="observacoes" rows="4">{{ plano.observacoes }}</textarea>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="semestre">
+                        <label for="evento">Eventos extraordinários:</label>
+                        <select id="evento" name="eventos_extraordinarios">
+                            <option value="Sim" {% if plano.eventos_extraordinarios == 'Sim' %} selected {% endif %}>Sim</option>
+                            <option value="Não" {% if plano.eventos_extraordinarios == 'Não' %} selected {% endif %}>Não</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="button">
+                        <button type="submit" class="salvar-al">Salvar Alterações</button>
+                        <button type="button" onclick="history.back()" class="cancelar-edit">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <footer>
+            <div class="container-footer">
+                <p>© 2024 PlanLab. Todos os direitos reservados.</p>
+                <p>Contato: <a href="mailto:info@planlab.com">info@planlab.com</a> | Telefone: +55 123 456 7890</p>
+                <div class="social-icons">
+                    <a href="#"><img src="{{ url_for('static', filename='img/SimpleIconsFacebook.png') }}" alt="Facebook"></a>
+                    <a href="#"><img src="{{ url_for('static', filename='img/SimpleIconsInstagram.png') }}" alt="Instagram"></a>
+                    <a href="#"><img src="{{ url_for('static', filename='img/LogosGithubIcon.png') }}" alt="Github"></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

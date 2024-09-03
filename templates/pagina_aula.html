@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Plano de Aula</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_index.css') }}">
+</head>
+<body>
+    <div class="conteiner">
+        <nav id="sidebar">
+            <div id="sidebar_content">
+                <div id="user_infos">
+                    <div class="logo">
+                        <span class="logo-side">{PlanLab}</span> <p class="logo-side">Solutions</p> 
+                    </div>
+                </div>
+        
+                <ul id="side_items">
+                    <li class="side-item active">
+                        <a href="{{ url_for('index') }}">
+                            <img src="../static/img/MaterialSymbolsHomeOutlineRounded.png" alt="">
+                            <span class="item-description">
+                                Home
+                            </span>
+                        </a>
+                    </li>
+        
+                    <li class="side-item">
+                        <a href="{{ url_for('planos_de_aula') }}">
+                            <img src="../static/img/MaterialSymbolsContractEditOutlineRounded.png" alt="">
+                            <span class="item-description">
+                                Planos de Aula
+                            </span>
+                        </a>
+                    </li>
+        
+                    <li class="side-item">
+                        <a href="#">
+                            <img src="../static/img/MaterialSymbolscadenetaToAppRounded.png" alt="">
+                            <span class="item-description">
+                                Cardeneta
+                            </span>
+                        </a>
+                    </li>
+        
+                    <li class="side-item">
+                        <a href="#">
+                            <img src="../static/img/MaterialSymbolsExitToAppRounded.png" alt="">
+                            <span class="item-description">
+                                Sair
+                            </span>
+                        </a>
+                    </li>
+        
+                </ul>
+        
+                <button id="open_btn">
+                    <img src="../static/img/seta.png" id="open_btn_icon" class="fa-solid fa-chevron-right"></img>
+                </button>
+            </div>
+        </nav>
+
+        <header>
+            <div class="logo-header"><img src="../static/img/planlab logo branco p.png" alt="">
+            </div>
+            <div class="usuario">
+                <img src="https://randomuser.me/api/portraits/women/24.jpg" alt="">
+                <div>
+                    <strong class="user-nome">Aurora Silva</strong>
+                    <div class="cargo"><span>Professor(a)</span></div>
+                </div>
+            </div>
+        </header>
+        <div class="table-container">
+            <h2 class="content-title">{{ plano.titulo }}</h2>
+            <table>
+                <tr>
+                    <th>Data da Aula</th>
+                    <td>{{ plano.data_aula }}</td>
+                </tr>
+                <tr>
+                    <th>Turma</th>
+                    <td>{{ plano.turma }}</td>
+                </tr>
+                <tr>
+                    <th>Semestre</th>
+                    <td>{{ plano.semestre }}</td>
+                </tr>
+                <tr>
+                    <th>Conteúdo Programático</th>
+                    <td>{{ plano.conteudo_programatico }}</td>
+                </tr>
+                <tr>
+                    <th>Metodologia</th>
+                    <td>{{ plano.metodologia }}</td>
+                </tr>
+                <tr>
+                    <th>Recursos Necessários</th>
+                    <td>{{ plano.recursos_necessarios }}</td>
+                </tr>
+                <tr>
+                    <th>Avaliação</th>
+                    <td>{{ plano.avaliacao_observacoes }}</td>
+                </tr>
+                <tr>
+                    <th>Observações Adicionais</th>
+                    <td>{{ plano.observacoes }}</td>
+                </tr>
+                <tr>
+                    <th>Eventos extraordinários</th>
+                    <td>{{ plano.eventos_extraordinarios }}</td>
+                </tr>
+            </table>
+            <div class="bnt-pgaula">
+                <form method="POST" action="{{ url_for('editar_plano', plano_id=plano.id) }}">
+                  <button type="submit" class="bnt-editar">Editar</button>   
+                </form>
+                <form method="POST" action="{{ url_for('excluir_plano', plano_id=plano.id) }}" onsubmit="return confirm('Tem certeza que deseja excluir este plano de aula?')">
+                    <button class="bnt-excluir">Excluir</button> 
+                </form>   
+                   
+            </div>
+        </div>
+
+        <footer>
+            <div class="container-footer">
+                <p>© 2024 PlanLab. Todos os direitos reservados.</p>
+                <p>Contato: <a href="mailto:info@planlab.com">info@planlab.com</a> | Telefone: +55 123 456 7890</p>
+                <div class="social-icons">
+                    <a href="#"><img src="{{ url_for('static', filename='img/SimpleIconsFacebook.png') }}" alt="Facebook"></a>
+                    <a href="#"><img src="{{ url_for('static', filename='img/SimpleIconsInstagram.png') }}" alt="Instagram"></a>
+                    <a href="#"><img src="{{ url_for('static', filename='img/LogosGithubIcon.png') }}" alt="Github"></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="../static/script.js"> </script>
+</body>
+</html>
